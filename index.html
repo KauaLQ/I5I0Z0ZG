@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>top secret</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#d9738f;--deep:#c4506f;--soft:#a97586;--ink:#643848;--paper:#fffaf6;
+--serif:"Cormorant Garamond",Georgia,serif;--script:"Great Vibes","Snell Roundhand","Segoe Script",cursive}
+*{box-sizing:border-box;margin:0}
+html{font-size:17px;height:100%}
+body{height:100%;font-family:var(--serif);color:var(--ink);overflow:hidden;
+background:linear-gradient(170deg,#fff5f7,#fbe3eb 55%,#f7d6e2);
+padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.b1{width:70vmax;height:70vmax;left:-30vmax;top:-25vmax;background:#ffd8d0}
+.b2{width:60vmax;height:60vmax;right:-28vmax;top:25%;background:#ecdcf6;opacity:.45}
+.b3{width:55vmax;height:55vmax;left:-15vmax;bottom:-30vmax;background:#f7b8cc}
+.fh{position:absolute;bottom:-30px;left:var(--x);font-size:var(--s);color:#e58fa9;opacity:0;animation:rise var(--d) linear var(--l) infinite}
+@keyframes rise{0%{transform:translate(0,0) rotate(-10deg);opacity:0}10%{opacity:.32}90%{opacity:.25}100%{transform:translate(24px,-112vh) rotate(12deg);opacity:0}}
+.stage{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;
+opacity:0;visibility:hidden;transition:opacity .9s ease,transform .9s ease,visibility 0s .9s}
+.stage.on{opacity:1;visibility:visible;transition:opacity .9s ease,transform .9s ease}
+.stage.leave{opacity:0;transform:scale(.97);visibility:hidden}
+svg.hs{width:1em;height:1em;fill:currentColor}
+
+/* senha */
+.lock{width:min(88vw,380px);padding:32px 26px 26px;text-align:center;border-radius:26px;background:rgba(255,255,255,.55);
+-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.85);
+box-shadow:0 26px 60px -22px rgba(196,80,111,.4)}
+.wax{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.35rem;
+background:radial-gradient(circle at 35% 28%,#ef93ad,#c4506f 72%);
+box-shadow:0 5px 12px rgba(160,50,85,.32),inset 0 0 0 4px rgba(255,255,255,.15),inset 0 -4px 6px rgba(120,20,50,.22)}
+.lock h1{font:400 2.3rem/1.1 var(--script);color:var(--deep)}
+.orn{display:flex;align-items:center;gap:10px;margin:12px auto 14px;width:70%;color:var(--rose);font-size:.7rem}
+.orn span{flex:1;height:1px;background:linear-gradient(90deg,transparent,#e6a9bb,transparent)}
+.lock p{font-style:italic;font-size:1.08rem;color:var(--soft);margin-bottom:18px}
+.field{position:relative}
+.field input{width:100%;padding:14px 74px 14px 16px;font:inherit;font-size:1.05rem;color:var(--ink);background:rgba(255,255,255,.85);
+border:1px solid #f0c6d3;border-radius:14px;outline:none;transition:border-color .3s,box-shadow .3s}
+.field input:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(217,115,143,.16)}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);padding:8px 10px;font:italic .95rem var(--serif);color:var(--soft);background:none;border:0;cursor:pointer}
+.go{margin-top:12px;width:100%;padding:14px;font:500 1.1rem var(--serif);letter-spacing:.02em;color:#fff;border:0;border-radius:999px;cursor:pointer;
+background:linear-gradient(135deg,#e590a8,#c9587a);box-shadow:0 10px 22px -8px rgba(196,80,111,.6);transition:transform .2s,filter .3s}
+.go:active{transform:scale(.98)}.go:disabled{filter:saturate(.6);cursor:wait}
+.msg{min-height:1.5em;margin-top:12px;font-size:.98rem;color:var(--deep)}
+.shake{animation:shake .45s}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
+/* envelope */
+.floater{margin-top:6vh;animation:float 5s ease-in-out infinite}
+.floater.pause{animation-play-state:paused}
+@keyframes float{50%{transform:translateY(-8px)}}
+.env{position:relative;display:block;width:min(74vw,330px);aspect-ratio:3/2;perspective:1000px;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.env:focus-visible{outline:3px solid rgba(217,115,143,.5);outline-offset:12px;border-radius:12px}
+.env>span{position:absolute;display:block}
+.back{inset:0;border-radius:10px;background:linear-gradient(180deg,#dd8fa8,#e8a5b9);box-shadow:0 24px 44px -12px rgba(190,80,115,.45)}
+.paper{left:7%;right:7%;top:12%;bottom:12%;z-index:1;border-radius:4px;color:var(--rose);text-align:center;padding-top:9%;font-size:1.1rem;
+background:repeating-linear-gradient(transparent 0 17px,#f6dde5 17px 18px) 0 34px/100% 100% repeat,var(--paper);
+box-shadow:0 2px 6px rgba(150,60,90,.15);transition:transform 1.3s cubic-bezier(.35,0,.2,1)}
+.front{inset:0;z-index:2;border-radius:10px;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);background:linear-gradient(155deg,#f7c6d3,#e99db3)}
+.folds{position:absolute;inset:0;width:100%;height:100%}
+.folds path{fill:none;stroke:rgba(255,255,255,.4);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.addr{position:absolute;left:0;right:0;bottom:11%;text-align:center;font:400 1.55rem var(--script);color:#fff;text-shadow:0 1px 3px rgba(160,50,85,.3)}
+.flap{left:0;right:0;top:0;height:55%;z-index:3;transform-origin:top center;transform-style:preserve-3d;transition:transform .95s cubic-bezier(.45,0,.2,1)}
+.flap>span{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0}
+.f1{background:linear-gradient(180deg,#f9cdd9,#eeaabd)}
+.f2{transform:rotateY(180deg);background:repeating-linear-gradient(45deg,rgba(255,255,255,.1) 0 2px,transparent 2px 9px),linear-gradient(180deg,#d68aa2,#e4a0b5)}
+.seal{left:50%;top:55%;z-index:4;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.2rem;
+background:radial-gradient(circle at 35% 28%,#ef93ad,#c4506f 72%);
+box-shadow:0 4px 10px rgba(150,40,70,.35),inset 0 0 0 3px rgba(255,255,255,.16),inset 0 -3px 5px rgba(120,20,50,.25);transition:opacity .4s,transform .4s}
+.seal::after{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(214,100,134,.7);animation:ripple 3s ease-out infinite}
+@keyframes ripple{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.1);opacity:0}}
+.env.open .flap{transform:rotateX(180deg)}
+.env.flapback .flap{z-index:0}
+.env.rise .paper{transform:translateY(-106%)}
+.env.front .paper{z-index:5}
+.env.open .seal{opacity:0;transform:scale(.6)}
+.env.open .seal::after{animation:none}
+.hint{margin-top:38px;font:400 1.6rem var(--script);color:var(--soft);animation:breathe 3.2s ease-in-out infinite;transition:opacity .5s}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:.95}}
+.hint.gone{opacity:0;animation:none}
+
+/* carta */
+.reader{justify-content:flex-start;overflow-y:auto}
+.letter{position:relative;margin:auto;width:min(90vw,480px);padding:42px 32px 36px;border-radius:6px;background:var(--paper);
+box-shadow:0 26px 60px -18px rgba(196,80,111,.38);transform:translateY(26px) scale(.97);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.letter::before{content:"";position:absolute;inset:10px;border:1px solid #f3d5de;border-radius:3px;pointer-events:none}
+.reader.on .letter{transform:none}
+.letter .orn{margin:0 auto 22px;width:50%}
+.blk{position:relative;white-space:pre-line;font-size:1.28rem;line-height:1.7;margin-bottom:1.1em;opacity:0;transform:translateY(8px);text-align:justify;
+transition:opacity 1.3s ease,transform 1.3s ease;transition-delay:calc(var(--i)*.6s + .7s)}
+.reader.on .blk{opacity:1;transform:none}
+.greet{font:400 2.1rem/1.2 var(--script);color:var(--deep)}
+.sign{font:400 1.9rem/1.3 var(--script);color:var(--deep);text-align:right;margin:1.4em 0 0}
+@media (max-height:560px){.env{width:min(58vw,250px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="h" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol></svg>
+
+<div class="bg" aria-hidden="true">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<span class="fh" style="--x:8%;--s:14px;--d:19s;--l:-3s">♥</span><span class="fh" style="--x:22%;--s:20px;--d:24s;--l:-14s">♥</span>
+<span class="fh" style="--x:38%;--s:11px;--d:17s;--l:-9s">♥</span><span class="fh" style="--x:55%;--s:17px;--d:22s;--l:-1s">♥</span>
+<span class="fh" style="--x:70%;--s:12px;--d:20s;--l:-12s">♥</span><span class="fh" style="--x:84%;--s:22px;--d:26s;--l:-6s">♥</span>
+<span class="fh" style="--x:93%;--s:13px;--d:18s;--l:-16s">♥</span>
+</div>
+
+<main class="stage on" id="lock">
+ <div class="lock">
+  <div class="wax"><svg class="hs"><use href="#h"/></svg></div>
+  <h1>Uma carta para você</h1>
+  <div class="orn"><span></span>♥<span></span></div>
+  <p id="hint">Digite a senha para abrir</p>
+  <form id="form" autocomplete="off">
+   <div class="field">
+    <input id="pw" type="password" placeholder="Senha" aria-label="Senha" required
+     autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" enterkeyhint="go">
+    <button class="eye" id="eye" type="button">mostrar</button>
+   </div>
+   <button class="go" id="go" type="submit">Continuar</button>
+  </form>
+  <div class="msg" id="msg" role="status"></div>
+ </div>
+</main>
+
+<main class="stage" id="scene">
+ <div class="floater" id="floater">
+  <button class="env" id="env" aria-label="Abrir o envelope">
+   <span class="back"></span>
+   <span class="paper"><svg class="hs"><use href="#h"/></svg></span>
+   <span class="front">
+    <svg class="folds" viewBox="0 0 300 200" preserveAspectRatio="none"><path d="M0 200L135 106M300 200L165 106M0 0L150 110L300 0"/></svg>
+    <span class="addr">para você</span>
+   </span>
+   <span class="flap"><span class="f1"></span><span class="f2"></span></span>
+   <span class="seal"><svg class="hs"><use href="#h"/></svg></span>
+  </button>
+ </div>
+ <div class="hint" id="tap">toque para abrir</div>
+</main>
+
+<main class="stage reader" id="reader">
+ <article class="letter">
+  <div class="orn"><span></span>♥<span></span></div>
+  <div id="text"></div>
+ </article>
+</main>
+
+<script>
+// Carta criptografada
+const BLOB = "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";
+const HINT = ""; // dica opcional
+const $ = id => document.getElementById(id);
+if (HINT) $('hint').textContent = 'Dica: ' + HINT;
+
+// Mesma normalização do gerador: ignora maiúsculas, espaços extras e aspas/traços "inteligentes" do celular
+const norm = s => s.normalize('NFKC').replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"')
+  .replace(/[\u2010-\u2015\u2212]/g,'-').replace(/\s+/g,' ').trim().toLowerCase();
+
+async function tryKey(pw, b){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b.slice(0,16), iterations:250000, hash:'SHA-256'},
+    base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM', iv:b.slice(16,28)}, key, b.slice(28)));
+}
+async function decrypt(raw){
+  const b = Uint8Array.from(atob(BLOB), c => c.charCodeAt(0));
+  // também tenta as versões antigas (sem normalização) para cartas geradas antes
+  for (const pw of [...new Set([norm(raw), raw.normalize('NFC').trim(), raw])]){
+    try { return await tryKey(pw, b); } catch {}
+  }
+  throw new Error('bad');
+}
+
+$('eye').onclick = () => {
+  const show = $('pw').type === 'password';
+  $('pw').type = show ? 'text' : 'password';
+  $('eye').textContent = show ? 'ocultar' : 'mostrar';
+};
+
+function build(t){
+  const b = t.trim().split(/\n\s*\n/), box = $('text'); let i = 0; box.textContent = '';
+  const add = (c, x) => { const p = document.createElement('p'); p.className = 'blk ' + c; p.style.setProperty('--i', i++); p.textContent = x; box.appendChild(p); };
+  if (b.length >= 3){ add('greet', b[0]); b.slice(1,-1).forEach(x => add('', x)); add('sign', b[b.length-1]); }
+  else b.forEach((x,k) => add(k === 0 && b.length > 1 ? 'greet' : '', x));
+}
+
+let letterText = '';
+$('form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('go'), msg = $('msg');
+  if (!(window.crypto && crypto.subtle)){
+    msg.textContent = 'Este navegador bloqueou a criptografia. Abra o link por HTTPS.'; return;
+  }
+  btn.disabled = true; btn.textContent = 'Abrindo…'; msg.textContent = '';
+  try{
+    letterText = await decrypt($('pw').value);
+    $('pw').value = '';
+    $('lock').classList.remove('on');
+    setTimeout(() => $('scene').classList.add('on'), 500);
+  }catch{
+    msg.textContent = 'Senha incorreta. Tente de novo.';
+    const f = $('form'); f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake');
+  }
+  btn.disabled = false; btn.textContent = 'Continuar';
+});
+
+let opened = false;
+$('env').addEventListener('click', () => {
+  if (opened) return; opened = true;
+  const env = $('env'), at = (ms, fn) => setTimeout(fn, ms);
+  build(letterText);
+  $('floater').classList.add('pause'); $('tap').classList.add('gone');
+  env.classList.add('open');                       // aba abre
+  at(450,  () => env.classList.add('flapback'));   // aba passa para trás
+  at(950,  () => env.classList.add('rise'));       // carta sai do envelope
+  at(2350, () => env.classList.add('front'));      // carta já fora: vai para a frente
+  at(2600, () => $('scene').classList.add('leave'));
+  at(3000, () => $('reader').classList.add('on'));
+});
+</script>
+</body>
+</html>
